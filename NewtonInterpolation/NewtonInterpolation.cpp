@@ -10,7 +10,7 @@ private:
 	string line;
 	fstream file;
 	float x[100], y[100], searchedValue = 1.0, numberOfNodes[1], result, resultTemp = 0;
-	float* loadData(string filename, float array[]);
+	void loadData(string filename, float array[]);
 public:
 
 	float findPolynomial(string filenumberOfNodes,
@@ -19,7 +19,7 @@ public:
 		float x);
 };
 
-float* NewtonInterpolation::loadData(string filename, float array[]) {
+void NewtonInterpolation::loadData(string filename, float array[]) {
 	int i = 0;
 	file.open(filename, ios::in);
 	if (file.good() == true)
@@ -32,7 +32,6 @@ float* NewtonInterpolation::loadData(string filename, float array[]) {
 		}
 		file.close();
 	}
-	return array;
 }
 
 
@@ -54,7 +53,7 @@ float NewtonInterpolation::findPolynomial(string filenumberOfNodes,
 		int k = 0;
 		while (k <= i) {
 			cout << "(x - " << x[k] << ")"; //dalsza czesc wzoru
-			searchedValue *= (point - x[k]); 
+			searchedValue *= (point - x[k]);
 			k++;
 		}
 		if (i < numberOfNodes[0] - 2) cout << " + "; //formatowanie wyswietlania znaku +
